@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/beerfetcher');
 
 var db = mongoose.connection;
 
@@ -8,15 +8,15 @@ db.on('error', function() {
 });
 
 db.once('open', function() {
-  console.log('mongoose connected successfully');
+  console.log('You are connected to the mongoose DB!');
 });
 
-var itemSchema = mongoose.Schema({
+var beerSchema = mongoose.Schema({
   quantity: Number,
   description: String
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var Beer = mongoose.model('Beer', beerSchema);
 
 var selectAll = function(callback) {
   Item.find({}, function(err, items) {

@@ -2,21 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
+import Search from './components/Search.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: []
+      beers: []
     }
   }
 
   componentDidMount() {
     $.ajax({
-      url: '/items', 
+      url: 'http://127.0.0.1:3000/items', 
+      method: 'GET',
       success: (data) => {
+        console.log('data is being received: ', data);
         this.setState({
-          items: data
+          beers: data
         })
       },
       error: (err) => {
@@ -25,10 +28,16 @@ class App extends React.Component {
     });
   }
 
+  search (field, term) {
+    console.log('this got clicked!');
+
+  }
+
   render () {
     return (<div>
       <h1>Item List</h1>
-      <List items={this.state.items}/>
+      <Search onSearch={this.search.bind(this)} />
+      <List beers={this.state.beers}/>
     </div>)
   }
 }

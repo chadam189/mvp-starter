@@ -1,26 +1,29 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-// UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var items = require('../database-mysql');
-// var items = require('../database-mongo');
+var morgan = require('morgan');
+var items = require('../database-mongo');
+var helper = require('./helpers.js');
+var CORS = require('cors');
 
 var app = express();
 
-// UNCOMMENT FOR REACT
-// app.use(express.static(__dirname + '/../react-client/dist'));
 
-// UNCOMMENT FOR ANGULAR
-// app.use(express.static(__dirname + '/../angular-client'));
-// app.use(express.static(__dirname + '/../node_modules'));
+app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(morgan('dev'));
+app.use(CORS());
 
 app.get('/items', function (req, res) {
-  items.selectAll(function(err, data) {
-    if(err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
-  });
+  let temp = [{description: 'sup ladies'}];
+  res.json(temp);
+
+  // items.selectAll(function(err, data) {
+  //   if(err) {
+  //     res.sendStatus(500);
+  //   } else {
+  //   	let temp = ['beersTestStuff'];
+  //     res.json(temp);
+  //   }
+  // });
 });
 
 app.listen(3000, function() {
