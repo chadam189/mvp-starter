@@ -51,17 +51,29 @@ table {
 
 body {
 	font-family: 'Open Sans', 'Droid Sans', Arial, sans-serif;
-	background: linear-gradient(141deg, #5cc9e8 0%, #1fc8db 51%, #2cb5e8 75%);
+	background: linear-gradient(141deg, #bfff80 33%, #e6ffcc 66%);
 }
 
-.tableheaders {
-	color: green;
-	border: .1em solid blue;
-}
-
-th, tr {
+h1 {
 	text-align: center;
-	margin-right: .2em;
+	vertical-align: center;
+	font-family: 'Georgia', serif;
+}
+
+h1 img {
+	height: 5em;
+  vertical-align: middle;
+}
+
+
+
+#search, #dropdown, .spacer {
+	width: 25%;
+}
+
+th, td {
+	text-align: center;
+	border: .2em solid black;
 }
 
 tr {

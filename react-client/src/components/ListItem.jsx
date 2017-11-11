@@ -1,28 +1,13 @@
 import React from 'react';
-import * as d3 from "d3";
-
-// const ListItem = (props) => (
-//   <tr>
-//     <td>{props.beer.beerId} </td>
-//     <td>{props.beer.name} </td>
-//     <td>{props.beer.categoryName} </td>
-//     <td>{props.beer.abvAvg} </td>
-//     <td>{props.beer.ibuAvg} </td>
-//     <td>{props.beer.srmAvg} </td>
-//   </tr>
-// )
-
-
 
 class ListItem extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-		  beerImg: 'images/beer4.png'
+		  beerImg: ''
 		};
 	}
-
 	
 	componentWillMount () {
 
@@ -54,13 +39,6 @@ class ListItem extends React.Component {
 
 	}
 
-// under 3	6
-// from 3 to 4)	7
-// 4 to 5)	45
-// 5 to 6) 	16
-// 6 to 7)	13
-// [8 and larger	18
-
 	render () {
 		return (
 		  <tr>
@@ -68,14 +46,12 @@ class ListItem extends React.Component {
 		    <td>{this.props.beer.fullname} </td>
 		    <td>{this.props.beer.categoryName} </td>
 		    <td>{this.props.beer.abvAvg} </td>
-		    <td>{this.props.beer.ibuAvg} </td>
+		    <td>{this.props.beer.description} </td>
 		    <td><img className="beerpic"src={this.state.beerImg}/></td>
 		  </tr>
 		)
 	}
 
 }
-
-
 
 export default ListItem;

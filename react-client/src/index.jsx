@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      beers: [{description: 'sup ladies', id: 1}]
+      beers: []
     }
   }
 
@@ -53,7 +53,7 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>Item List</h1>
+      <h1>BEER <img src="images/beermeheader.png" /> ME!</h1>
       <Search onSearch={this.search.bind(this)} />
       <List beers={this.state.beers}/>
     </div>)

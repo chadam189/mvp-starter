@@ -18,9 +18,17 @@ class Search extends React.Component {
 
 	render () {
 		return (
-		  <div>
-		    <h4> Search Bar has arrived! </h4>
-		  </div>
+		  <ul className="searchArea">    
+		    <li className="searchSpacer"></li>      
+		    <li>
+	        <input id="search" className="form-control" name="search" type="text" placeholder="Find your Style..."/>
+	      </li>
+	      <li>
+	        <input id="dropdown" className="form-control" name="search" type="text" placeholder="Find your Style..."/>
+	      </li>
+	      <li className="searchSpacer"></li>
+      </ul>      
+
 	  );
 	}
 
