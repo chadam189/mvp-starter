@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      beers: []
+      beers: [{description: 'sup ladies', id: 1}]
     }
   }
 
@@ -30,6 +30,23 @@ class App extends React.Component {
 
   search (field, term) {
     console.log('this got clicked!');
+
+    $.ajax({
+      url: 'http://127.0.0.1:3000/items', 
+      method: 'GET',
+      data: {
+        
+      },
+      success: (data) => {
+        console.log('data is being received: ', data);
+        // this.setState({
+        //   beers: data
+        // })
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
 
   }
 
