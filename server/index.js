@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var database = require('../database-mongo');
 var helpers = require('./helpers.js');
 var CORS = require('cors');
+var d3 = require("d3");
 
 
 var app = express();

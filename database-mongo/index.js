@@ -19,7 +19,7 @@ var beerSchema = mongoose.Schema({
 var styleSchema = mongoose.Schema({
   id: {type: Number, unique: true}, // id
   beerId: Number,
-  // fullname: String,
+  fullname: String,
   name: String, // name
   ibuAvg: Number, // (ibuMin + ibuMax) / 2
   abvAvg: Number, // (abvMin + abvMax) / 2
@@ -67,11 +67,18 @@ var saveAllStyles = function(styles) {
       continue;
     }
 
+    // let beerName = styles[i].beerName;
+
+    // beerName = beerName.substring(0, beerName.indexOf('or'));
+    // beerName = beerName.substring(0, beerName.indexOf('/'));
+    // beerName = beerName.substring(0, beerName.indexOf('('));
+
 
     let obj = {
       id: styles[i].id,
       beerId: id++,
-      name: styles[i].name,
+      fullname: styles[i].name,
+      // name: beerName,
       ibuAvg: ibuAvg,
       abvAvg: abvAvg,
       srmAvg: srmAvg,
