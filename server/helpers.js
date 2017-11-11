@@ -1,19 +1,22 @@
 var rp = require('request-promise');
 var config = require('../config/config.js');
 
-var searchBeerAPI = function (term = 'styles', field) {
+var searchBeerAPI = function (field, params) {
 
   return new Promise(function(resolve, reject) {
 
-    console.log('inside searchBeerAPI with args: ', term, field);
+  	field = field || 'styles';
+
+    console.log('inside searchBeerAPI with args: ', field, params);
+
+    console.log('searching with this url: ', `http://api.brewerydb.com/v2/${field}?`);
 
     var options = {
-      uri: `http://api.brewerydb.com/v2/styles?key=${config.API_KEY}`,
-      // qs: {
-      //     key: `${config.API_KEY}`, 
-      //     // -> uri + '?key=xxxxxxxxx'
-      //     format: 'json'
-      // },
+      uri: `http://api.brewerydb.com/v2/${field}?`,
+      qs: {
+          key: `${config.API_KEY}`, 
+          // -> uri + '?key=xxxxxxxxx'
+      },
       headers: {
           // 'User-Agent': 'Request-Promise'
       },

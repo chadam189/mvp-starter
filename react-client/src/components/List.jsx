@@ -6,7 +6,17 @@ const List = (props) => (
     <h4> List Component </h4>
     There are { props.beers.length } items.
     <table className="beerList">
-    { props.beers.map(beer => <ListItem beer={beer} key={beer.id}/>)}
+	    <thead>
+		    <th>Beer ID</th>
+		    <th>Name</th>
+		    <th>Category</th>
+		    <th>Average ABV</th>
+		    <th>Average IBU</th>
+		    <th>Average SRM</th>
+		  </thead>
+		  <tbody>
+		    {props.beers.map(beer => <ListItem beer={beer} key={beer.id}/>)}
+	    </tbody>
     </table>
   </div>
 )

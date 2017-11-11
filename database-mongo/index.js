@@ -18,10 +18,12 @@ var beerSchema = mongoose.Schema({
 
 var styleSchema = mongoose.Schema({
   id: {type: Number, unique: true}, // id
+  beerId: Number,
   // fullname: String,
   name: String, // name
   ibuAvg: Number, // (ibuMin + ibuMax) / 2
   abvAvg: Number, // (abvMin + abvMax) / 2
+  srmAvg: Number,
   categoryId: Number, // category.id
   categoryName: String, // category.name
   description: String  // description
@@ -41,48 +43,41 @@ var Style = mongoose.model('Style', styleSchema);
 //   });
 // };
 
-var saveAllStyles = function(beers) {
-  console.log('saveAllStyles is being called with', beers.length);
+var saveAllStyles = function(styles) {
+  console.log('saveAllStyles is being called with', styles.length);
 
   var results = [];
 
-  for(var i = 0; i < beers.length; i++) {
+  var id = 1;
 
-    // console.log(beers[i].abvMin, beers[i].abvMax, beers[i].ibuMin, beers[i].ibuMax);
-    let ibu1 = parseInt(beers[i].ibuMin);
-    let ibu2 = parseInt(beers[i].ibuMax);
-    let abv1 = parseInt(beers[i].abvMin);
-    let abv2 = parseInt(beers[i].abvMax);
+  for(var i = 0; i < styles.length; i++) {
 
-    // console.log(abv1, abv2, ibu1, ibu2);
+    let ibu1 = parseInt(styles[i].ibuMin);
+    let ibu2 = parseInt(styles[i].ibuMax);
+    let abv1 = parseInt(styles[i].abvMin);
+    let abv2 = parseInt(styles[i].abvMax);
+    let srm1 = parseInt(styles[i].srmMin);
+    let srm2 = parseInt(styles[i].srmMax);
 
-
-
-    // let ibu1 = beers[i].ibuMin || beers[i].ibuMax;
-    // let ibu2 = beers[i].ibuMax || beers[i].ibuMin;
-    // let abv1 = beers[i].abvMin || beers[i].abvMax;
-    // let abv2 = beers[i].abvMax || beers[i].abvMin;
-    if (!ibu1 || !ibu2) {
-      console.log('This beer is missing an ibu: ', beers[i].name);
-      console.log(`min = ${ibu1} and max = ${ibu2}`)
-    }
-    if (!abv1 || !abv2) {
-      console.log('This beer is missing an abv: ', beers[i].name);
-      console.log(`min = ${abv1} and max = ${abv2}`)
-    }
     let ibuAvg = (ibu1 + ibu2) * .5;
     let abvAvg = (abv1 + abv2) * .5;
+    let srmAvg = (abv1 + abv2) * .5;
 
-    // console.log('abv avg = ', abvAvg, 'ibu avg =', ibuAvg);
+    if (!ibuAvg || !abvAvg || !srmAvg ) {
+      continue;
+    }
+
 
     let obj = {
-      id: beers[i].id,
-      name: beers[i].name,
+      id: styles[i].id,
+      beerId: id++,
+      name: styles[i].name,
       ibuAvg: ibuAvg,
       abvAvg: abvAvg,
-      categoryId: beers[i].category.id, 
-      categoryName: beers[i].category.name,
-      description: beers[i].description
+      srmAvg: srmAvg,
+      categoryId: styles[i].category.id, 
+      categoryName: styles[i].category.name,
+      description: styles[i].description
     };
 
     let newStyle = new Style(obj);
@@ -91,7 +86,6 @@ var saveAllStyles = function(beers) {
     newStyle.save({});
   }
   return (results);
-  // });
 }
 
 
