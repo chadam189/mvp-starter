@@ -4,7 +4,6 @@ import $ from 'jquery';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
 import Sliders from './components/Sliders.jsx';
-import * as d3 from "d3";
 
 class App extends React.Component {
   constructor(props) {

@@ -20,13 +20,15 @@ var styleSchema = mongoose.Schema({
   id: {type: Number, unique: true}, // id
   beerId: Number,
   fullname: String,
-  name: String, // name
+  nickname: String, // name
   ibuAvg: Number, // (ibuMin + ibuMax) / 2
   abvAvg: Number, // (abvMin + abvMax) / 2
   srmAvg: Number,
   categoryId: Number, // category.id
   categoryName: String, // category.name
-  description: String  // description
+  description: String,  // description
+  zscore: Number,
+  prefRating: Number
 });
 
 var Beer = mongoose.model('Beer', beerSchema);
@@ -67,24 +69,26 @@ var saveAllStyles = function(styles) {
       continue;
     }
 
-    // let beerName = styles[i].beerName;
+    let beerName = styles[i].name;
 
-    // beerName = beerName.substring(0, beerName.indexOf('or'));
-    // beerName = beerName.substring(0, beerName.indexOf('/'));
-    // beerName = beerName.substring(0, beerName.indexOf('('));
+    beerName = beerName.substring(0, beerName.indexOf('or'));
+    beerName = beerName.substring(0, beerName.indexOf('/'));
+    beerName = beerName.substring(0, beerName.indexOf('('));
 
 
     let obj = {
       id: styles[i].id,
       beerId: id++,
       fullname: styles[i].name,
-      // name: beerName,
+      nickname: beerName,
       ibuAvg: ibuAvg,
       abvAvg: abvAvg,
       srmAvg: srmAvg,
       categoryId: styles[i].category.id, 
       categoryName: styles[i].category.name,
-      description: styles[i].description
+      description: styles[i].description,
+      zscore: 0,
+      prefRating: 0
     };
 
     let newStyle = new Style(obj);
