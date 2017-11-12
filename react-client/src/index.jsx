@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
+import Sliders from './components/Sliders.jsx';
 import * as d3 from "d3";
 
 class App extends React.Component {
@@ -55,6 +56,8 @@ class App extends React.Component {
     return (<div>
       <h1>BEER <img src="images/beermeheader.png" /> ME!</h1>
       <Search onSearch={this.search.bind(this)} />
+      <Sliders onSearch={this.search.bind(this)} />
+
       <List beers={this.state.beers}/>
     </div>)
   }

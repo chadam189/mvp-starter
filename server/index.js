@@ -16,7 +16,8 @@ app.use(CORS());
 
 app.get('/items', function (req, res) {
 
-  Promise.resolve(helpers.searchBeerAPI(null, null))
+  // Promise.resolve(helpers.searchBeerAPI(null, null))
+  Promise.resolve({data: ['cats']})
 
   .then((results) => {
   	console.log('results from SBAPI = ', results.data.length);
