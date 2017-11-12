@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
+import Preference from './components/Preference.jsx';
 import Sliders from './components/Sliders.jsx';
 
 class App extends React.Component {
@@ -14,6 +15,8 @@ class App extends React.Component {
       sliderIBU: 43.5,
       sliderSRM: 21
     }
+
+    this.listSort.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +40,7 @@ class App extends React.Component {
     this.setState({
       sliderABV: e.target.value
     });
+    this.listSort();
   }
 
   sliderIBUChange (e) {
@@ -44,6 +48,7 @@ class App extends React.Component {
     this.setState({
       sliderIBU: e.target.value
     });
+    this.listSort();
   }
 
   sliderSRMChange (e) {
@@ -51,13 +56,54 @@ class App extends React.Component {
     this.setState({
       sliderSRM: e.target.value
     });
+    this.listSort();
   }
 
-  listResort () {
+  listSort () {
+
     // hardcoding the zscore params
-    // abv = 5.6, 2
-    // ibu = 28.5, 14.8
-    // srm = 14.7 10.5
+      // it would have been nice to calculate these on the fly
+      // abv = 5.6, 2
+      // ibu = 28.5, 14.8
+      // srm = 14.7 10.5
+    let abvMean = 5.6;
+    let abVSTDev = 2;
+    let ibuMean = 28.5;
+    let ibuSTDev = 14.8;
+    let srmMean = 14.7;
+    let srmSTDev = 10.5;
+
+    // intermediate steps to calculate this beer's z-score
+        // for easier debugging
+
+    let currentAbvZ = (this.state.sliderABV - abvMean) / abVSTDev;
+    let currentIbuZ = (this.state.sliderIBU - ibuMean) / ibuSTDev;
+    let currentSrmZ = (this.state.sliderSRM - srmMean) / srmSTDev;
+
+    let currentPrefZScore = currentAbvZ + currentIbuZ + currentSrmZ;
+
+
+    let newBeers = [];
+    for (var i = 0; i < this.state.beers.length; i++) {
+      newBeers.push(this.state.beers[i]);
+
+      // intermediate steps to calculate this beer's z-score
+
+      let abvZ = (newBeers[i].abvAvg - abvMean) / abVSTDev;
+      let ibuZ = (newBeers[i].ibuAvg - ibuMean) / ibuSTDev;
+      let srmZ = (newBeers[i].srmAvg - srmMean) / srmSTDev;
+
+      newBeers[i].zscore = abvZ + ibuZ + srmZ;
+      newBeers[i].prefRating = Math.abs( Math.abs(currentPrefZScore) - Math.abs(newBeers[i].zscore));
+    }
+
+    newBeers.sort(function (a, b) {
+      return a.prefRating - b.prefRating;
+    });
+
+    this.setState({
+      beers: newBeers
+    });
   }
 
   search (field, term) {
@@ -81,11 +127,12 @@ class App extends React.Component {
     });
 
   }
+      // {this.state.beers.length > 0 && 
 
   render () {
     return (<div>
       <h1>BEER <img src="images/beermeheader.png" /> ME!</h1>
-
+        <Preference beer={this.state.beers[0]} />
       <Sliders
         sliderABV={this.state.sliderABV}
         sliderIBU={this.state.sliderIBU}

@@ -17,16 +17,16 @@ var beerSchema = mongoose.Schema({
 });
 
 var styleSchema = mongoose.Schema({
-  id: {type: Number, unique: true}, // id
+  id: {type: Number, unique: true},
   beerId: Number,
   fullname: String,
-  nickname: String, // name
-  ibuAvg: Number, // (ibuMin + ibuMax) / 2
-  abvAvg: Number, // (abvMin + abvMax) / 2
+  nickname: String, 
+  ibuAvg: Number, 
+  abvAvg: Number, 
   srmAvg: Number,
-  categoryId: Number, // category.id
-  categoryName: String, // category.name
-  description: String,  // description
+  categoryId: Number, 
+  categoryName: String,
+  description: String,  
   zscore: Number,
   prefRating: Number
 });
@@ -100,11 +100,4 @@ var saveAllStyles = function(styles) {
 }
 
 
-
-
-//     }
-//   });
-// };
-
-// module.exports.selectAll = selectAll;
 module.exports.saveAllStyles = saveAllStyles;

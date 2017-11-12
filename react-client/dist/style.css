@@ -66,6 +66,15 @@ h1 img {
   vertical-align: middle;
 }
 
+.userfavorite {
+	margin: 2em;
+}
+
+.userfavorite img {
+	margin: auto;
+	display: block;
+}
+
 .searchArea {
 	display: inline;
 }
