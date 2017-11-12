@@ -25,7 +25,7 @@ class ListItem extends React.Component {
 			});
 		} else if (this.props.beer.srmAvg <= 20) {
 			this.setState({
-				beerImg: 'images/red-circle.jpg'
+				beerImg: 'images/beer4.png'
 			});
 		} else if (this.props.beer.srmAvg <= 30) {
 			this.setState({
