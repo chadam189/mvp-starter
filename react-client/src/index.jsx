@@ -10,7 +10,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      beers: []
+      beers: [],
+      sliderABV: 7,
+      sliderIBU: 43.5,
+      sliderSRM: 21
     }
   }
 
@@ -22,12 +25,40 @@ class App extends React.Component {
         console.log('data is being received: ', data);
         this.setState({
           beers: data
-        })
+        });
       },
       error: (err) => {
         console.log('err', err);
       }
     });
+  }
+
+  sliderABVChange (e) {
+    // console.log('slider changed: ', e.target.value);
+    this.setState({
+      sliderABV: e.target.value
+    });
+  }
+
+  sliderIBUChange (e) {
+    // console.log('slider changed: ', e.target.value);
+    this.setState({
+      sliderIBU: e.target.value
+    });
+  }
+
+  sliderSRMChange (e) {
+    // console.log('slider changed: ', e.target.value);
+    this.setState({
+      sliderSRM: e.target.value
+    });
+  }
+
+  listResort () {
+    // hardcoding the zscore params
+    // abv = 5.6, 2
+    // ibu = 28.5, 14.8
+    // srm = 14.7 10.5
   }
 
   search (field, term) {
@@ -41,9 +72,9 @@ class App extends React.Component {
       },
       success: (data) => {
         console.log('data is being received: ', data);
-        // this.setState({
-        //   beers: data
-        // })
+        this.setState({
+          beers: data
+        });
       },
       error: (err) => {
         console.log('err', err);
@@ -56,7 +87,14 @@ class App extends React.Component {
     return (<div>
       <h1>BEER <img src="images/beermeheader.png" /> ME!</h1>
 
-      <Sliders onSearch={this.search.bind(this)} />
+      <Sliders
+        sliderABV={this.state.sliderABV}
+        sliderIBU={this.state.sliderIBU}
+        sliderSRM={this.state.sliderSRM}
+        onABVChange={this.sliderABVChange.bind(this)}
+        onIBUChange={this.sliderIBUChange.bind(this)}
+        onSRMChange={this.sliderSRMChange.bind(this)}
+      />
 
       <List beers={this.state.beers}/>
     </div>)
