@@ -132,7 +132,6 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>BEER <img src="images/beermeheader.png" /> ME!</h1>
-        <Preference beer={this.state.beers[0]} />
       <Sliders
         sliderABV={this.state.sliderABV}
         sliderIBU={this.state.sliderIBU}

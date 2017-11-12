@@ -50,19 +50,22 @@ table {
 /**********/
 
 body {
-	font-family: 'Open Sans', 'Droid Sans', Arial, sans-serif;
-	background: linear-gradient(141deg, #bfff80 33%, #e6ffcc 66%);
-  /*background: linear-gradient(141deg, #42cef4 33%, #85c7f7 66%);*/
+	font-family: 'Open Sans', sans-serif;
+	/*background: linear-gradient(to right, #bfff80 33%, #e6ffcc 66%);*/
+  background: linear-gradient(to right, #85d0fc 33%, #bfe6fc 66%);
+  /*background-repeat: no-repeat;*/
 }
 
 h1 {
+	font-family: 'BenchNine', sans-serif;
 	text-align: center;
 	vertical-align: center;
+	font-size: 550%;
 /*	font-family: 'Georgia', serif;*/
 }
 
 h1 img {
-	height: 5em;
+	height: 3em;
   vertical-align: middle;
 }
 
@@ -98,7 +101,7 @@ h1 img {
 	display: inline;
 }
 
-.slidenav h4, h6 {
+.slidenav h2, h4 {
 	text-align: center;
 	font-weight: 600;
 }
@@ -174,28 +177,16 @@ h1 img {
 */
 
 
-.sliderlabel {
-    text-align: center;
+.labelleft {
+    text-align: left;
+    font-size: 150%;
 }
 
-
-/*.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 23px;
-    height: 24px;
-    border: 0;
-    background: url("https://d3b8rq9ztst8vv.cloudfront.net/hops/card/hop-bullion.png?mtime=20151224191039");
-    cursor: pointer;
+.labelright {
+    text-align: right;
+    font-size: 150%;
+    float: right;
 }
-
-.slider::-moz-range-thumb {
-    width: 23px;
-    height: 25px;
-    border: 0;
-    background: url("https://d3b8rq9ztst8vv.cloudfront.net/hops/card/hop-bullion.png?mtime=20151224191039");
-    cursor: pointer;
-}*/
 
 
 th, td {
@@ -203,14 +194,42 @@ th, td {
 	border: .2em solid black;
 }
 
-tr {
-	
-}
-
 .beerpic {
 	height: 2em;
 }
 
+th, td {
+	text-align: center;
+	border: .2em solid black;
+}
+
+.beeritem {
+	height: 20em;
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	display: inline-block;
+	/*float: left;*/
+	border: 1px solid red;
+}
+
+.beerpic2 {
+	width: 20%;
+	float: left;
+}
+
+.beerpic2 img {
+	height: 16em;
+	border-radius: 50%;
+	vertical-align: top;
+}
+
+.beerinfo {
+	float: left;
+	width: 40%;
+	border: 2px solid blue;
+	text-align: left;
+}
 
 
 
