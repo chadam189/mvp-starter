@@ -63,9 +63,6 @@ class App extends React.Component {
 
     // hardcoding the zscore params
       // it would have been nice to calculate these on the fly
-      // abv = 5.6, 2
-      // ibu = 28.5, 14.8
-      // srm = 14.7 10.5
     let abvMean = 5.6;
     let abVSTDev = 2;
     let ibuMean = 28.5;
@@ -73,8 +70,7 @@ class App extends React.Component {
     let srmMean = 14.7;
     let srmSTDev = 10.5;
 
-    // intermediate steps to calculate this beer's z-score
-        // for easier debugging
+    // intermediate steps to calculate user's preferece z-score
 
     let currentAbvZ = (this.state.sliderABV - abvMean) / abVSTDev;
     let currentIbuZ = (this.state.sliderIBU - ibuMean) / ibuSTDev;
@@ -131,7 +127,7 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>BEER <img src="images/beermeheader.png" /> ME!</h1>
+      <h1 className="headerBar">BEER <img src="images/beermeheader.png" /> ME!</h1>
       <Sliders
         sliderABV={this.state.sliderABV}
         sliderIBU={this.state.sliderIBU}

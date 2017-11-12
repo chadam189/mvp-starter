@@ -44,11 +44,10 @@ class ListItem extends React.Component {
 			<div className="beeritem">
 		    <div className="beerpic2">
 		      <img src={this.state.beerImg}/> 
-		      <h1>{this.props.beer.categoryName}</h1>
+		      <h2>{this.props.beer.fullname}</h2>
 		    </div>
 		    <div className="beerinfo">
-		    <h4>{this.props.beer.fullname}</h4>
-		    {this.props.beer.categoryName}  
+		    <h3><strong>Category:</strong> {this.props.beer.categoryName}</h3>
 		    {this.props.beer.description}  
 		    </div>
 		  </div>
