@@ -61,7 +61,7 @@ var saveAllStyles = function(styles) {
 
     let ibuAvg = (ibu1 + ibu2) * .5;
     let abvAvg = (abv1 + abv2) * .5;
-    let srmAvg = (abv1 + abv2) * .5;
+    let srmAvg = (srm1 + srm2) * .5;
 
     if (!ibuAvg || !abvAvg || !srmAvg ) {
       continue;

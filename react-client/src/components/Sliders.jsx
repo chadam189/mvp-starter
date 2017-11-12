@@ -37,18 +37,20 @@ class Sliders extends React.Component {
 		return (
 
 			<div className="slidenav">
-				<div className="slidecontainer">
-				  <input type="range" min="2" max="10" step="0.5" value={this.state.sliderABV} className="slider sliderABV" onChange={this.sliderABVChange.bind(this)}/>
+				<fieldset className="slidecontainer">
+				  <span className="leftlabel">Light</span>
+				  <input type="range" min="1.5" max="11.5" step="0.5" value={this.state.sliderABV} className="slider sliderABV" onChange={this.sliderABVChange.bind(this)}/>
+				  <span className="leftlabel">Boozy</span>
 				  <h4>Alcohol Content (ABV)</h4>
 				  <h6>Current Value: {this.state.sliderABV}</h6>
-				</div>
+				</fieldset>
 				<div className="slidecontainer">
-				  <input type="range" min="1" max="100" value={this.state.sliderIBU} className="slider sliderIBU" onChange={this.sliderIBUChange.bind(this)}/>
+				  <input type="range" min="4.5" max="82.5" step="0.5" value={this.state.sliderIBU} className="slider sliderIBU" onChange={this.sliderIBUChange.bind(this)}/>
 				  <h4>Hoppiness (IBU)</h4>
 				  <h6>Current Value: {this.state.sliderIBU}</h6>
 				</div>
 				<div className="slidecontainer">
-				  <input type="range" min="1" max="100" value={this.state.sliderSRM} className="slider sliderSRM" onChange={this.sliderSRMChange.bind(this)}/>
+				  <input type="range" min="2" max="40" step="0.5" value={this.state.sliderSRM} className="slider sliderSRM" onChange={this.sliderSRMChange.bind(this)}/>
 				  <h4>Beer Color (SRM)</h4>
 				  <h6>Current Value: {this.state.sliderSRM}</h6>
 				</div>
