@@ -8,7 +8,7 @@ const List = (props) => (
   <div>
     {props.beers.length > 0 && 
 	    <div className="beerList">
-			    {props.beers.slice(0,3).map(beer => <ListPics beer={beer} key={beer.id}/>)}
+			    {props.beers.slice(0,10).map(beer => <ListPics beer={beer} key={beer.id}/>)}
 	    </div> 
     }
   </div>

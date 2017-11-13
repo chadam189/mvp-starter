@@ -35,18 +35,7 @@ var Beer = mongoose.model('Beer', beerSchema);
 
 var Style = mongoose.model('Style', styleSchema);
 
-// var selectAll = function(model, callback) {
-//   model.find({}, function(err, beers) {
-//     if(err) {
-//       callback(err, null);
-//     } else {
-//       callback(null, beers);
-//     }
-//   });
-// };
-
 var saveAllStyles = function(styles) {
-  console.log('saveAllStyles is being called with', styles.length);
 
   var results = [];
 
@@ -61,6 +50,7 @@ var saveAllStyles = function(styles) {
     let srm1 = parseInt(styles[i].srmMin);
     let srm2 = parseInt(styles[i].srmMax);
 
+
     let ibuAvg = (ibu1 + ibu2) * .5;
     let abvAvg = (abv1 + abv2) * .5;
     let srmAvg = (srm1 + srm2) * .5;
@@ -74,7 +64,6 @@ var saveAllStyles = function(styles) {
     beerName = beerName.substring(0, beerName.indexOf('or'));
     beerName = beerName.substring(0, beerName.indexOf('/'));
     beerName = beerName.substring(0, beerName.indexOf('('));
-
 
     let obj = {
       id: styles[i].id,
@@ -98,6 +87,5 @@ var saveAllStyles = function(styles) {
   }
   return (results);
 }
-
 
 module.exports.saveAllStyles = saveAllStyles;

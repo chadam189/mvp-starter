@@ -90,7 +90,7 @@ class App extends React.Component {
       let srmZ = (newBeers[i].srmAvg - srmMean) / srmSTDev;
 
       newBeers[i].zscore = abvZ + ibuZ + srmZ;
-      newBeers[i].prefRating = Math.abs( Math.abs(currentPrefZScore) - Math.abs(newBeers[i].zscore));
+      newBeers[i].prefRating = Math.abs( currentPrefZScore - newBeers[i].zscore);
     }
 
     newBeers.sort(function (a, b) {
