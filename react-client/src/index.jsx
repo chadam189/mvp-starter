@@ -11,9 +11,9 @@ class App extends React.Component {
     super(props);
     this.state = { 
       beers: [],
-      sliderABV: 7,
-      sliderIBU: 43.5,
-      sliderSRM: 21
+      sliderABV: 4,
+      sliderIBU: 32,
+      sliderSRM: 14
     }
 
     this.listSort.bind(this);
@@ -28,6 +28,7 @@ class App extends React.Component {
         this.setState({
           beers: data
         });
+        this.listSort();
       },
       error: (err) => {
         console.log('err', err);
@@ -90,11 +91,16 @@ class App extends React.Component {
       let srmZ = (newBeers[i].srmAvg - srmMean) / srmSTDev;
 
       newBeers[i].zscore = abvZ + ibuZ + srmZ;
-      newBeers[i].prefRating = Math.abs( currentPrefZScore - newBeers[i].zscore);
+      newBeers[i].prefRating = Math.abs((Math.round(currentPrefZScore, 2)) - (Math.round(newBeers[i].zscore, 2)));
+      // console.log(newBeers[i].id, newBeers[i].prefRating);
     }
 
     newBeers.sort(function (a, b) {
       return a.prefRating - b.prefRating;
+    });
+    
+    newBeers.forEach(function (beer) {
+      console.log(beer.id, beer.prefRating);
     });
 
     this.setState({
